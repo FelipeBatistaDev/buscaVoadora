@@ -1,0 +1,10 @@
+<p-dropdown [options]="companies" [(ngModel)]="selectedFrom" placeholder="Aeroporto de Origem" optionLabel="nome" [showClear]="true"></p-dropdown>
+<p>Aeroporto de Origem: {{selectedFrom ? (selectedFrom.nome) + ' em ' + (selectedFrom.cidade) : ''}}</p>
+
+<p-dropdown [options]="companies" [(ngModel)]="selectedTo" placeholder="Aeroporto de Destino" optionLabel="nome" [showClear]="true"></p-dropdown>
+<p>Aeroporto de Destino: {{selectedTo ? (selectedTo.nome) + ' em ' + (selectedTo.cidade) : ''}}</p>
+
+<p-dropdown [options]="avaiableDates" [(ngModel)]="date" placeholder="data voo" optionLabel="date" [showClear]="true"></p-dropdown>
+<p>Data: {{date ? date.date : ''}}</p>
+
+<button pButton type="button" label="Ver Lista de Voôs" class="ui-button-raised ui-button-primary" (click)="postSearch()"></button>
