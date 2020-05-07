@@ -1,4 +1,4 @@
-export class searchData {
+export class SearchData {
     constructor(
         public from: string,
         public to: string,

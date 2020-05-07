@@ -7,6 +7,8 @@ import { FormsModule }   from '@angular/forms';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import {ButtonModule} from 'primeng/button';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,8 @@ import { SearchMenuComponent } from './components/search-menu/search-menu.compon
 import { ResultTableComponent } from './components/result-table/result-table.component';
 
 import { ApiServiceService } from './services/api-service.service';
+import { FlightFacadeService } from './store/facades/flight.facade.service';
+import { flightReducer } from './store/reducers/flight.reducer'
 
 @NgModule({
   declarations: [
@@ -29,9 +33,15 @@ import { ApiServiceService } from './services/api-service.service';
     TableModule,
     DropdownModule,
     ButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('flightReducer', flightReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
   ],
-  providers: [ApiServiceService],
+  providers: [ApiServiceService,
+    FlightFacadeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

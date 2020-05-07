@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ResultTableComponent } from './components/result-table/result-table.component'
 
 
-const routes: Routes = [];
+const routes: Routes = [{
+  path: 'flightList',
+  component: ResultTableComponent
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

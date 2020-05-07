@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectItem} from 'primeng/api';
 import { ApiServiceService } from 'src/app/services/api-service.service';
-import { searchData } from 'src/app/models/searchData.model';
-import { companies } from 'src/app/models/companies';
-import { error } from 'protractor';
+import { SearchData } from 'src/app/models/searchData.model';
+import { Companies } from 'src/app/models/companies';
+import { FlightFacadeService } from 'src/app/store/facades/flight.facade.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-menu',
@@ -12,13 +12,17 @@ import { error } from 'protractor';
 })
 export class SearchMenuComponent implements OnInit {
 
-  public companies: companies[];
-  public selectedFrom: companies;
-  public selectedTo: companies;
+  public companies: Companies[];
+  public selectedFrom: Companies;
+  public selectedTo: Companies;
   public date;
   public avaiableDates = [{date: '2019-02-10'},{date:'2019-02-11'},{date:'2019-02-12'},{date:'2019-02-13'},{date:'2019-02-14'},{date:'2019-02-15'},{date:'2019-02-16'},{date:'2019-02-17'},{date:'2019-02-18'}];
 
-  constructor(private _apiService: ApiServiceService) { 
+  constructor(
+    private _apiService: ApiServiceService,
+    private _flightFacade: FlightFacadeService,
+    private router: Router
+    ) { 
     this.getCompaniesList();
   }
 
@@ -33,9 +37,12 @@ export class SearchMenuComponent implements OnInit {
   }
 
   postSearch(){
-    let searchData: searchData = this.createSearchData();
+    let searchData: SearchData = this.createSearchData();
     this._apiService.postFlightList(searchData).subscribe(
-      flightList => console.log(flightList),
+      flightList => {
+        this._flightFacade.saveFlightList(flightList)
+        this.router.navigate(['flightList']);
+      },
       error => alert(error)
     );
   }

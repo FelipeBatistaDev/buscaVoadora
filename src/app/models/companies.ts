@@ -1,4 +1,4 @@
-export class companies {
+export class Companies {
     constructor(
         public nome: string,
         public aeroporto: string,

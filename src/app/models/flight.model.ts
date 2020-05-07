@@ -1,12 +1,12 @@
-export class flight {
+export class Flight {
     constructor(
         public origem: string,
         public destino: string,
         public date: string,
-        public voos: flightData[]) { }
+        public voos: FlightData[]) { }
 }
 
-class flightData {
+export class FlightData {
     constructor(
         public voo: string,
         public origem: string,

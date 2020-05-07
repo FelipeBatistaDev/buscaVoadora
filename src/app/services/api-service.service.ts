@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators'
-import { companies } from '../models/companies';
-import { searchData } from '../models/searchData.model';
-import { flight } from '../models/flight.model';
+import { Companies } from '../models/companies';
+import { SearchData } from '../models/searchData.model';
+import { Flight } from '../models/flight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,14 @@ export class ApiServiceService {
 
   private apiPath: string = 'https://api-voadora.dev.tegra.com.br/flight/'
 
-  getCompanies(): Observable<companies[]> {
+  getCompanies(): Observable<Companies[]> {
     return this._http.get(`${this.apiPath + 'companies'}`).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCompanies)
     )
   }
 
-  postFlightList(flightData: searchData) {
+  postFlightList(flightData: SearchData) {
     return this._http.post(this.apiPath, flightData).pipe(
       catchError(this.handleError),
       map(this.jsonDataToFlightList)
@@ -33,17 +33,17 @@ export class ApiServiceService {
   }
 
   //#region Data Generic Treatment Json to Model
-  private jsonDataToCompanies(jsonData: any[]): companies[] {
-    const companies: companies[] = [];
-    jsonData.forEach(element => companies.push(element as companies));
+  private jsonDataToCompanies(jsonData: any[]): Companies[] {
+    const companies: Companies[] = [];
+    jsonData.forEach(element => companies.push(element as Companies));
 
     return companies;
   }
 
   
-  private jsonDataToFlightList(jsonData: any[]): flight[] {
-    const flightList: flight[] = [];
-    jsonData.forEach(element => flightList.push(element as flight));
+  private jsonDataToFlightList(jsonData: any[]): Flight[] {
+    const flightList: Flight[] = [];
+    jsonData.forEach(element => flightList.push(element as Flight));
 
     return flightList;
   }
