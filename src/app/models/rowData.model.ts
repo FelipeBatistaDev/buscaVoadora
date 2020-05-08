@@ -4,7 +4,8 @@ export class rowData{
         public tempoVoo?: string,
         public tempoEspera?: string,
         public escala?: string,
-        public voos?: flightInfo[] ) { }
+        public voos?: flightInfo[] 
+        ) { }
 }
 
 export class flightInfo{
@@ -15,5 +16,6 @@ export class flightInfo{
         data_saida: string,
         saida: string,
         chegada: string,
-        valor: number) { }
+        valor: number
+        ) { }
 }

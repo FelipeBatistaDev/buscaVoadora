@@ -3,7 +3,8 @@ export class Flight {
         public origem: string,
         public destino: string,
         public date: string,
-        public voos: FlightData[]) { }
+        public voos: FlightData[]
+        ) { }
 }
 
 export class FlightData {

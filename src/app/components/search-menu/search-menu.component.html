@@ -10,21 +10,44 @@
 </div>
 <div class="row mt-4">
     <div class="col">
-        <p-dropdown [options]="companies" [(ngModel)]="selectedFrom" placeholder="Aeroporto de Origem" optionLabel="nome" [showClear]="true"></p-dropdown>
-        <p>Aeroporto de Origem: {{selectedFrom ? (selectedFrom.nome) + ' em ' + (selectedFrom.cidade) : ''}}</p>
+        <p-dropdown
+         [options]="companies"
+         [(ngModel)]="selectedFrom"
+         placeholder="Aeroporto de Origem" 
+         optionLabel="nome"
+         [showClear]="true"
+          ></p-dropdown>
+        <p>Origem: {{selectedFrom ? (selectedFrom.nome) + ' em ' + (selectedFrom.cidade) : ''}}</p>
+        <p-message *ngIf="!hasOrigem" severity="error" text="Campo Obrigatório"></p-message>
     </div>
     <div class="col">
-        <p-dropdown [options]="companies" [(ngModel)]="selectedTo" placeholder="Aeroporto de Destino" optionLabel="nome" [showClear]="true"></p-dropdown>
-        <p>Aeroporto de Destino: {{selectedTo ? (selectedTo.nome) + ' em ' + (selectedTo.cidade) : ''}}</p>
+        <p-dropdown
+        [options]="companies"
+        [(ngModel)]="selectedTo"
+        placeholder="Aeroporto de Destino"
+        optionLabel="nome"
+        [showClear]="true"
+        ></p-dropdown>
+        <p>Destino: {{selectedTo ? (selectedTo.nome) + ' em ' + (selectedTo.cidade) : ''}}</p>
+        <p-message *ngIf="!hasDestino" severity="error" text="Campo Obrigatório"></p-message>
     </div>
     <div class="col">
-        <p-dropdown [options]="avaiableDates" [(ngModel)]="date" placeholder="data voo" optionLabel="date" [showClear]="true"></p-dropdown>
+        <p-dropdown
+         [options]="avaiableDates"
+         [(ngModel)]="date"
+         placeholder="data voo"
+         optionLabel="date"
+         [showClear]="true"
+         ></p-dropdown>
         <p>Data: {{date ? date.date : ''}}</p>
+        <p-message *ngIf="!hasData" severity="error" text="Campo Obrigatório"></p-message>
     </div>
     <div class="col">
-        <button pButton type="button" label="Ver Lista de Voôs" class="ui-button-raised ui-button-primary" (click)="postSearch()"></button>
+        <button pButton type="button" label="Ver Lista de Voôs" class="ui-button-raised ui-button-primary" (click)="validator()"></button>
     </div>
 </div>
+
+
 
 
 

@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DatatreatmentService } from 'src/app/services/datatreatment.service';
 import { Router } from '@angular/router';
+import { flightInfo, rowData } from 'src/app/models/rowData.model';
 
 @Component({
   selector: 'app-result-table',
@@ -27,19 +28,22 @@ import { Router } from '@angular/router';
 })
 
 export class ResultTableComponent implements OnInit {
-  public flightList: any
+  public flightList: rowData[];
   unsub$ = new Subject();
-  cols: any[] = [];
+  cols = [];
   
   constructor(
     private _flightFacade: FlightFacadeService,
     private _dataTreatment: DatatreatmentService,
     private _router: Router
   ) { 
-    this.flightList = [];
+
     this._flightFacade.flightList$.pipe(takeUntil(this.unsub$)).subscribe(store =>{
       this.flightList = this.rowCreator(store);
-
+      
+      if(this.flightList.length == 0){
+        this._router.navigate([''])
+      }
     })
   }
 

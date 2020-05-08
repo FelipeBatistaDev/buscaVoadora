@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { SearchData } from 'src/app/models/searchData.model';
-import { Companies } from 'src/app/models/companies';
+import { Companies, datasDisponiveis } from 'src/app/models/companies';
 import { FlightFacadeService } from 'src/app/store/facades/flight.facade.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search-menu',
@@ -13,19 +14,21 @@ import { Router } from '@angular/router';
 export class SearchMenuComponent implements OnInit {
 
   public companies: Companies[];
+  public hasOrigem: boolean = true;
+  public hasDestino: boolean = true;
+  public hasData: boolean = true;
   public selectedFrom: Companies;
   public selectedTo: Companies;
   public date;
-  public avaiableDates = [{date: '2019-02-10'},{date:'2019-02-11'},{date:'2019-02-12'},{date:'2019-02-13'},{date:'2019-02-14'},{date:'2019-02-15'},{date:'2019-02-16'},{date:'2019-02-17'},{date:'2019-02-18'}];
+  public avaiableDates = datasDisponiveis;
 
   constructor(
     private _apiService: ApiServiceService,
     private _flightFacade: FlightFacadeService,
-    private router: Router
+    private router: Router,
     ) { 
     this.getCompaniesList();
   }
-
   ngOnInit(): void {
   }
 
@@ -55,6 +58,28 @@ export class SearchMenuComponent implements OnInit {
       to: this.selectedTo.aeroporto,
       date: this.date.date
     }
+  }
+
+  validator(){
+    if(this.selectedFrom == undefined){
+      this.hasOrigem = false
+      return
+    }else{
+      this.hasOrigem = true;
+    }
+    if(this.selectedTo == undefined){
+      this.hasDestino = false
+      return
+    }else{
+      this.hasDestino = true;
+    }
+    if(this.date == undefined){
+      this.hasData = false;
+      return
+    }else{
+      this.hasData = true;
+    }
+    this.postSearch()
   }
 
 }
