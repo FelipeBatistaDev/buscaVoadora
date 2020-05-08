@@ -1,6 +1,6 @@
 export class rowData{
     constructor(
-        public valorTotal?: number,
+        public valorTotal?: string,
         public tempoVoo?: string,
         public tempoEspera?: string,
         public escala?: string,
