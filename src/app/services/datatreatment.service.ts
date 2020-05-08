@@ -14,6 +14,7 @@ export class DatatreatmentService {
 
 
   createTableRows(flightList){
+    this.rowData = []
     this.receivedData = flightList;
 
     this.receivedData.forEach(flight =>{

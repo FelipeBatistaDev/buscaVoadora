@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs';
-import { saveFlightList } from '../actions/flight.actions'
+import { saveFlightList, clearFlightList } from '../actions/flight.actions'
 import { Flight } from 'src/app/models/flight.model';
 
 @Injectable({
@@ -21,5 +21,9 @@ export class FlightFacadeService {
    saveFlightList(payload){
      this.store.dispatch(saveFlightList({listData: payload}))
    }
+
+   clearFlightList(){
+    this.store.dispatch(clearFlightList());
+  }
    
 }

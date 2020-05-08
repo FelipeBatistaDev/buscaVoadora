@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FlightFacadeService } from 'src/app/store/facades/flight.facade.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DatatreatmentService } from 'src/app/services/datatreatment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result-table',
@@ -23,14 +25,16 @@ import { DatatreatmentService } from 'src/app/services/datatreatment.service';
     ])
 ]
 })
+
 export class ResultTableComponent implements OnInit {
   public flightList: any
   unsub$ = new Subject();
-  cols: any[];
-
+  cols: any[] = [];
+  
   constructor(
     private _flightFacade: FlightFacadeService,
-    private _dataTreatment: DatatreatmentService
+    private _dataTreatment: DatatreatmentService,
+    private _router: Router
   ) { 
     this.flightList = [];
     this._flightFacade.flightList$.pipe(takeUntil(this.unsub$)).subscribe(store =>{
@@ -39,11 +43,7 @@ export class ResultTableComponent implements OnInit {
     })
   }
 
-
-
-
   ngOnInit(): void {
-
     this.cols = [
       { field: 'escala', header: 'Escalas' },
       { field: 'tempoEspera', header: 'Tempo entre Escalas' },

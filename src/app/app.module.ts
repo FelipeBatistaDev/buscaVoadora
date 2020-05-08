@@ -18,7 +18,8 @@ import { ResultTableComponent } from './components/result-table/result-table.com
 import { ApiServiceService } from './services/api-service.service';
 import { FlightFacadeService } from './store/facades/flight.facade.service';
 import { DatatreatmentService } from './services/datatreatment.service';
-import { flightReducer } from './store/reducers/flight.reducer'
+import { flightReducer } from './store/reducers/flight.reducer';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { flightReducer } from './store/reducers/flight.reducer'
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    NgbModule,
   ],
   providers: [
     ApiServiceService,

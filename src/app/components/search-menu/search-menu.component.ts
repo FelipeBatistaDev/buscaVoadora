@@ -38,6 +38,8 @@ export class SearchMenuComponent implements OnInit {
 
   postSearch(){
     let searchData: SearchData = this.createSearchData();
+    this._flightFacade.clearFlightList();
+    
     this._apiService.postFlightList(searchData).subscribe(
       flightList => {
         this._flightFacade.saveFlightList(flightList)

@@ -1,4 +1,4 @@
-<p-table [columns]="cols" [value]="flightList" dataKey="valorTotal">
+<p-table #flightsTable [columns]="cols" [value]="flightList" dataKey="valorTotal">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3em"></th>
@@ -14,7 +14,7 @@
                     <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
                 </a>
             </td>
-            <td *ngFor="let col of columns">
+            <td *ngFor="let col of columns" [pSortableColumn]="col.field">
                 {{rowData[col.field]}}
             </td>
         </tr>
@@ -22,29 +22,32 @@
     <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
         <tr>
             <td [attr.colspan]="columns.length + 1">
-                <div *ngFor="let flight of rowData.voos" class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                    <div class="ui-g-12 ui-md-9">
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <b>Nome Voo:</b> {{flight.voo}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Origem:</b> {{flight.origem}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Destino:</b> {{flight.destino}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Data Saída:</b> {{flight.data_saida}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Horário Saída:</b> {{flight.saida}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Horário Chegada:</b> {{flight.chegada}}
-                            </div>
-                            <div class="ui-g-12">
-                                <b>Valor Individual:</b> {{flight.valor}}
+                <h4>Detalhes</h4>
+                <div class="row">
+                    <div *ngFor="let flight of rowData.voos" class="ui-g ui-fluid col" style="font-size:14px;padding:20px">
+                        <div class="ui-g-12 ui-md-9">
+                            <div class="ui-g">
+                                <div class="ui-g-12">
+                                    <b>Nome Voo:</b> {{flight.voo}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Origem:</b> {{flight.origem}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Destino:</b> {{flight.destino}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Data Saída:</b> {{flight.data_saida}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Horário Saída:</b> {{flight.saida}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Horário Chegada:</b> {{flight.chegada}}
+                                </div>
+                                <div class="ui-g-12">
+                                    <b>Valor Individual:</b> {{flight.valor}}
+                                </div>
                             </div>
                         </div>
                     </div>

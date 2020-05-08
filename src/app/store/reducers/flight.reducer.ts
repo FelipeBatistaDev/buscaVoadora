@@ -9,24 +9,14 @@ export interface State{
     voos: []
 }
 
-export const initialState: State[] = [{
-    origem: '',
-    destino: '',
-    date: '',
-    voos: []
-}]
+export const initialState: State[] = []
 
 const _flightReducer = createReducer(initialState,
     on(saveFlightList, (state: State[], {listData}) => {
         return [...listData]
     }),
     on (clearFlightList, (state: State[]) => {
-        return{...state,
-            origem: '',
-            destino: '',
-            date: '',
-            voos: []
-        }
+        return[]
     }));
 
     export function flightReducer(state: State[] | undefined, action: Action){
