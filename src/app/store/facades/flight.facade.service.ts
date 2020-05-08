@@ -21,4 +21,5 @@ export class FlightFacadeService {
    saveFlightList(payload){
      this.store.dispatch(saveFlightList({listData: payload}))
    }
+   
 }

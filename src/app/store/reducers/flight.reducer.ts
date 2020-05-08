@@ -1,12 +1,12 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { saveFlightList, clearFlightList } from '../actions/flight.actions';
-import { FlightData } from '../../models/flight.model';
+import { FlightData, Flight } from '../../models/flight.model';
 
-export interface State {
+export interface State{
     origem: string,
     destino: string,
     date: string,
-    voos: FlightData[]
+    voos: []
 }
 
 export const initialState: State[] = [{
@@ -17,10 +17,8 @@ export const initialState: State[] = [{
 }]
 
 const _flightReducer = createReducer(initialState,
-    on(saveFlightList, (state: State[], { listData }) => {
-        return {
-            ...listData
-        }
+    on(saveFlightList, (state: State[], {listData}) => {
+        return [...listData]
     }),
     on (clearFlightList, (state: State[]) => {
         return{...state,

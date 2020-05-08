@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FlightFacadeService } from './flight.facade.service';
+import { DatatreatmentService } from './datatreatment.service';
 
-describe('Flight.FacadeService', () => {
-  let service: FlightFacadeService;
+describe('DatatreatmentService', () => {
+  let service: DatatreatmentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FlightFacadeService);
+    service = TestBed.inject(DatatreatmentService);
   });
 
   it('should be created', () => {

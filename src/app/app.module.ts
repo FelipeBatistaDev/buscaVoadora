@@ -17,6 +17,7 @@ import { ResultTableComponent } from './components/result-table/result-table.com
 
 import { ApiServiceService } from './services/api-service.service';
 import { FlightFacadeService } from './store/facades/flight.facade.service';
+import { DatatreatmentService } from './services/datatreatment.service';
 import { flightReducer } from './store/reducers/flight.reducer'
 
 @NgModule({
@@ -40,8 +41,10 @@ import { flightReducer } from './store/reducers/flight.reducer'
       maxAge: 25,
     }),
   ],
-  providers: [ApiServiceService,
-    FlightFacadeService],
+  providers: [
+    ApiServiceService,
+    FlightFacadeService,
+    DatatreatmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
