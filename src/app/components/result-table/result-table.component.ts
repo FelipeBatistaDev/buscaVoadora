@@ -49,7 +49,7 @@ export class ResultTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'escala', header: 'Escalas' },
+      { field: 'escala', header: 'Escala?' },
       { field: 'tempoEspera', header: 'Tempo entre Escalas' },
       { field: 'tempoVoo', header: 'Tempo de Voô' },
       { field: 'valorTotal', header: 'Valor Total' },
