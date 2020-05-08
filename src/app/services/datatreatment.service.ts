@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { rowData } from '../models/rowData.model';
+import { rowData, flightInfo } from '../models/rowData.model';
+
+import { takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { CompanyFacadeService } from '../store/facades/company.facade.service';
+import { Companies } from '../models/companies';
 
 @Injectable({
   providedIn: 'root'
@@ -7,26 +12,59 @@ import { rowData } from '../models/rowData.model';
 export class DatatreatmentService {
 
   receivedData: any[]
+  companyList;
   row: rowData = {};
   rowData: any[] = [];
+  unsub$ = new Subject();
+  flightDetails = [];
 
-  constructor() { }
+  constructor(
+    private _companyFacade: CompanyFacadeService,
+  ) {
+    this._companyFacade.companyList$.pipe(takeUntil(this.unsub$)).subscribe(store =>{
+        this.companyList = store;
+    })
+   }
 
 
   createTableRows(flightList){
     this.rowData = []
+    this.flightDetails = [];
     this.receivedData = flightList;
 
     this.receivedData.forEach(flight =>{
       var object = new rowData();
       object.escala = flight.voos.length > 1 ? 'sim': 'não';
-      object.valorTotal = `R$ ${this.sumValue(flight.voos)}`
-      object.tempoEspera = this.subConnectionWaste(flight.voos)
-      object.tempoVoo = this.subHour(flight.voos)
-      object.voos = flight.voos;
+      object.valorTotal = `R$ ${this.sumValue(flight.voos)}`;
+      object.tempoEspera = this.subConnectionWaste(flight.voos);
+      object.tempoVoo = this.subHour(flight.voos);
+      object.voos = this.putNameOnAirports(flight.voos);
       this.rowData.push(object);
     })
     return this.rowData;
+  }
+
+
+  putNameOnAirports(flights){
+    this.flightDetails = [];
+    
+    flights.forEach((flight, index) => {
+      var companyFrom = this.companyList.filter(x => x.aeroporto == flight.origem)
+      var companyTo = this.companyList.filter(x => x.aeroporto == flight.destino)
+
+      this.flightDetails.push({
+        voo: flight.voo,
+        origem: companyFrom[0].nome,
+        destino: companyTo[0].nome,
+        data_saida: flight.data_saida,
+        saida: flight.saida,
+        chegada: flight.chegada,
+        valor: flight.valor
+      })
+    
+    })
+
+    return this.flightDetails;
   }
 
 

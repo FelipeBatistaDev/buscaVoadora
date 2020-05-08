@@ -4,6 +4,7 @@ import { SearchData } from 'src/app/models/searchData.model';
 import { Companies, datasDisponiveis } from 'src/app/models/companies';
 import { FlightFacadeService } from 'src/app/store/facades/flight.facade.service';
 import { Router } from '@angular/router';
+import { CompanyFacadeService } from 'src/app/store/facades/company.facade.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class SearchMenuComponent implements OnInit {
   constructor(
     private _apiService: ApiServiceService,
     private _flightFacade: FlightFacadeService,
+    private _companyFacade: CompanyFacadeService,
     private router: Router,
     ) { 
     this.getCompaniesList();
@@ -34,7 +36,10 @@ export class SearchMenuComponent implements OnInit {
 
   getCompaniesList(){
     this._apiService.getCompanies().subscribe(
-      companies => this.companies = companies,
+      companies => {
+        this.companies = companies
+        this._companyFacade.saveCompaniesList(companies)
+      },
       error => alert(error)
     );
   }

@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DatatreatmentService } from 'src/app/services/datatreatment.service';
 import { Router } from '@angular/router';
-import { flightInfo, rowData } from 'src/app/models/rowData.model';
+import { rowData } from 'src/app/models/rowData.model';
 
 @Component({
   selector: 'app-result-table',

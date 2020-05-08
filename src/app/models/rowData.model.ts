@@ -10,12 +10,12 @@ export class rowData{
 
 export class flightInfo{
     constructor(
-        voo: string,
-        origem: string,
-        destino: string,
-        data_saida: string,
-        saida: string,
-        chegada: string,
-        valor: number
+        public voo: string,
+        public origem: string,
+        public destino: string,
+        public data_saida: string,
+        public saida: string,
+        public chegada: string,
+        public valor: number
         ) { }
 }

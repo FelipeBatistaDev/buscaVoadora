@@ -22,9 +22,11 @@ import { ResultTableComponent } from './components/result-table/result-table.com
 import { ApiServiceService } from './services/api-service.service';
 import { FlightFacadeService } from './store/facades/flight.facade.service';
 import { DatatreatmentService } from './services/datatreatment.service';
+import { CompanyFacadeService } from './store/facades/company.facade.service';
 import { MessageService } from 'primeng/api';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { companyReducer } from './store/reducers/company.reducer';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     MessageModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('flightReducer', flightReducer),
+    StoreModule.forFeature('companyReducer', companyReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
@@ -55,6 +58,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     ApiServiceService,
     FlightFacadeService,
     DatatreatmentService,
+    CompanyFacadeService,
     ],
   bootstrap: [AppComponent]
 })
