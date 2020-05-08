@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { rowData, flightInfo } from '../models/rowData.model';
+import { rowData } from '../models/rowData.model';
 
-import { takeUntil, filter } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CompanyFacadeService } from '../store/facades/company.facade.service';
-import { Companies } from '../models/companies';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatatreatmentService {
 
-  receivedData: any[]
+  receivedData: rowData[];
   companyList;
   row: rowData = {};
-  rowData: any[] = [];
+  rowData = [];
   unsub$ = new Subject();
   flightDetails = [];
 

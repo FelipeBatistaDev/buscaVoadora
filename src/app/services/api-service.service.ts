@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, flatMap } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import { Companies } from '../models/companies';
 import { SearchData } from '../models/searchData.model';
 import { Flight } from '../models/flight.model';
@@ -16,7 +16,7 @@ export class ApiServiceService {
 
   constructor(private _http: HttpClient) { }
 
-  private apiPath: string = 'https://api-voadora.dev.tegra.com.br/flight/'
+  private apiPath: string = 'https://api-voadora.dev.tegra.com.br/flight/';
 
   getCompanies(): Observable<Companies[]> {
     return this._http.get(`${this.apiPath + 'companies'}`).pipe(

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FlightFacadeService } from 'src/app/store/facades/flight.facade.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
