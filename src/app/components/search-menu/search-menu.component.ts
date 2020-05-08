@@ -50,6 +50,9 @@ export class SearchMenuComponent implements OnInit {
     
     this._apiService.postFlightList(searchData).subscribe(
       flightList => {
+        if(flightList.length == 0){
+          alert('não foram encontrados voos!')
+        }
         this._flightFacade.saveFlightList(flightList)
         this.router.navigate(['flightList']);
       },
