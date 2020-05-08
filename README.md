@@ -1,27 +1,82 @@
-# BuscaVoadora
+# Busca Voadora
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Um projeto com objetivo de consultar a api Voadora da Tegra utilizando Angular 9, utlizando prime-ng, ng-rx e bootstrap. Mostrando em uma interface simples e amigável uma busca de voôs disponíveis com o tempo e preço descritos em uma tabela.
 
-## Development server
+## Iniciando o Projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1 - Primeiro passo para inciar o projeto é clonar o repositório localmente em sua máquina:
 
-## Code scaffolding
+```
+git clone https://github.com/FelipeBatistaDev/buscaVoadora.git
+```
+2 - Atente-se aos pré requisitos para rodar o projeto, caso não tenha algum deles na máquina não será possível executar o programa!
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3 - Após clonar o projeto é necessário fazer o download das dependências do projeto rodando um comando do npm em sua raiz, caso não esteja na raiz primeiro deve rodar no prompt ou terminal:
+```
+cd buscaVoadora
+```
+e em seguida
+```
+npm install
+```
+isso irá baixar todas as dependências do projeto e deixá-lo pronto para rodar
 
-## Build
+4 - Agora com as dependências baixadas podemos executar o comando para rodar o programa e em seguida vizulá-lo no browser, então primeiro no mesmo prompt/ terminal em que rodamos o npm install iremos executar o seguinte comando:
+```
+ng serve
+```
+após terminar o processo de compilação basta difitar no seu browser o seguinte endereço:
+```
+http://localhost:4200/
+```
+e pronto a aplicação está pronta para o uso!
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Pré Requisitos
 
-## Running unit tests
+Para Rodar a aplicação precisamos ter instalados o Node e o Angular/Cli
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Link para Download do Node:
+```
+https://nodejs.org/en/
+```
+Após instalar o node na máquina acesse seu terminal/prompt e digite
 
-## Running end-to-end tests
+```
+npm install -g @angular/cli
+```
+esse comando instalará o Angular/Cli na sua máquina
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Instalações
 
-## Further help
+As instalações necessárias para o projeto são apenas as descritas na seção de pré requisitos e na etapa de Iniciando o projeto:
+- Node
+```
+https://nodejs.org/en/
+```
+- Angular/Cli
+```
+ npm install -g @angular/cli
+```
+- dependencias
+```
+ npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Deploy
+
+Para deixar a applicação pronta para o deploy basta rodar na raiz do projeto o seguinte comando:
+```
+ ng build --prod
+```
+Esse comando irá adicionar uma pasta dist no projeto com os arquivos minificados pronta para ser colocada no servidor em que desejar hospedar a aplicação
+
+## Built With
+
+* [Angular9](https://angular.io/) - Framework Web utilizado
+* [ng-rx](https://ngrx.io/) - Controle de States da Aplicação
+* [prime-ng](https://primefaces.org/primeng/showcase/#/) - componentes utilizados
+* [bootstrap](https://getbootstrap.com/) - responsividade e posicionamento de elementos
+
+## Autor
+
+* **Felipe Batista** - *Criação Inicial* - [FelipeBatistaDev](https://github.com/FelipeBatistaDev)
